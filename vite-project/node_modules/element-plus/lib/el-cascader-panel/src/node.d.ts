@@ -1,0 +1,35 @@
+import type { CascaderNodeValue, CascaderNodePathValue, CascaderOption, CascaderConfig } from './types';
+declare type ChildrenData = CascaderOption[] | undefined;
+export default class Node {
+    readonly data: Nullable<CascaderOption>;
+    readonly config: CascaderConfig;
+    readonly parent?: Node;
+    readonly root: boolean;
+    readonly uid: number;
+    readonly level: number;
+    readonly value: CascaderNodeValue;
+    readonly label: string;
+    readonly pathNodes: Node[];
+    readonly pathValues: CascaderNodePathValue;
+    readonly pathLabels: string[];
+    childrenData: ChildrenData;
+    children: Node[];
+    text: string;
+    loaded: boolean;
+    checked: boolean;
+    indeterminate: boolean;
+    loading: boolean;
+    constructor(data: Nullable<CascaderOption>, config: CascaderConfig, parent?: Node, root?: boolean);
+    get isDisabled(): boolean;
+    get isLeaf(): boolean;
+    get valueByOption(): string | number | CascaderNodePathValue;
+    appendChild(childData: CascaderOption): Node;
+    calcText(allLevels: boolean, separator: string): string;
+    broadcast(event: string, ...args: unknown[]): void;
+    emit(event: string, ...args: unknown[]): void;
+    onParentCheck(checked: boolean): void;
+    onChildCheck(): void;
+    setCheckState(checked: boolean): void;
+    doCheck(checked: boolean): void;
+}
+export {};

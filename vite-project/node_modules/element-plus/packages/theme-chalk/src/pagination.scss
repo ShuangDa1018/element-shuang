@@ -1,0 +1,314 @@
+@import "mixins/mixins";
+@import "mixins/utils";
+@import "common/var";
+@import "select";
+
+$--pagination-height-extra-small: 22px !default;
+$--pagination-line-height-extra-small: $--pagination-height-extra-small !default;
+
+@include b(pagination) {
+  white-space: nowrap;
+  padding: 2px 5px;
+  color: $--pagination-font-color;
+  font-weight: bold;
+  @include utils-clearfix;
+
+  span:not([class*=suffix]),
+  button {
+    display: inline-block;
+    font-size: $--pagination-font-size;
+    min-width: $--pagination-button-width;
+    height: $--pagination-button-height;
+    line-height: $--pagination-button-height;
+    vertical-align: top;
+    box-sizing: border-box;
+  }
+
+  .#{$namespace}-input__inner {
+    text-align: center;
+    -moz-appearance: textfield;
+    line-height: normal;
+  }
+
+  // pagesize 的下拉 icon
+  .#{$namespace}-input__suffix {
+    right: 0;
+    transform: scale(.8);
+  }
+
+  .#{$namespace}-select .#{$namespace}-input {
+    width: 100px;
+    margin: 0 5px;
+
+    .#{$namespace}-input__inner {
+      padding-right: 25px;
+      border-radius: $--pagination-border-radius;
+    }
+  }
+
+  button {
+    border: none;
+    padding: 0 6px;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: $--pagination-hover-color;
+    }
+
+    &:disabled {
+      color: $--pagination-button-disabled-color;
+      background-color: $--pagination-button-disabled-background-color;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-prev,
+  .btn-next {
+    background: center center no-repeat;
+    background-size: 16px;
+    background-color: $--pagination-background-color;
+    cursor: pointer;
+    margin: 0;
+    color: $--pagination-button-color;
+
+    .#{$namespace}-icon {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  .btn-prev {
+    padding-right: 12px;
+  }
+
+  .btn-next {
+    padding-left: 12px;    
+  }
+
+  .#{$namespace}-pager li.disabled {
+    color: $--color-text-placeholder;
+    cursor: not-allowed;
+  }
+
+  @include m(small) {
+    .btn-prev,
+    .btn-next,
+    .#{$namespace}-pager li,
+    .#{$namespace}-pager li.btn-quicknext,
+    .#{$namespace}-pager li.btn-quickprev,
+    .#{$namespace}-pager li:last-child {
+      border-color: transparent;
+      font-size: $--font-size-extra-small;
+      line-height: $--pagination-line-height-extra-small;
+      height: $--pagination-height-extra-small;
+      min-width: 22px;
+    }
+
+    .arrow.disabled {
+      visibility: hidden;
+    }
+
+    .more::before,
+    li.more::before {
+      line-height: $--pagination-line-height-extra-small;
+    }
+
+    span:not([class*=suffix]),
+    button {
+      height: $--pagination-height-extra-small;
+      line-height: $--pagination-line-height-extra-small;
+    }
+
+    @include e(editor) {
+      height: $--pagination-line-height-extra-small;
+      &.#{$namespace}-input .#{$namespace}-input__inner {
+        height: $--pagination-height-extra-small;
+      }
+    }
+
+    .#{$namespace}-input__inner,
+    .#{$namespace}-input--mini {
+      height: $--pagination-height-extra-small !important;
+      line-height: $--pagination-line-height-extra-small;
+    }
+
+    .#{$namespace}-input__suffix {
+      line-height: $--pagination-line-height-extra-small;
+      .#{$namespace}-input__suffix-inner {
+        line-height: $--pagination-line-height-extra-small;
+        i.el-select__caret {
+          line-height: $--pagination-line-height-extra-small;
+        }
+      }
+    }
+  }
+
+  @include e(sizes) {
+    margin: 0 10px 0 0;
+    font-weight: normal;
+    color: $--color-text-regular;
+
+    .#{$namespace}-input .#{$namespace}-input__inner {
+      font-size: $--pagination-font-size;
+      padding-left: 8px;
+
+      &:hover {
+        border-color: $--pagination-hover-color;
+      }
+    }
+  }
+
+  @include e(total) {
+    margin-right: 10px;
+    font-weight: normal;
+    color: $--color-text-regular;
+  }
+
+  @include e(jump) {
+    margin-left: 24px;
+    font-weight: normal;
+    color: $--color-text-regular;
+
+    .#{$namespace}-input__inner {
+      padding: 0 3px;
+    }
+  }
+
+  @include e(rightwrapper) {
+    float: right;
+  }
+
+  @include e(editor) {
+    line-height: 18px;
+    padding: 0 2px;
+    height: $--pagination-button-height;
+      
+    text-align: center;
+    margin: 0 2px;
+    box-sizing: border-box;
+    border-radius: $--pagination-border-radius;
+
+    &.#{$namespace}-input {
+      width: 50px;
+    }
+
+    &.#{$namespace}-input .#{$namespace}-input__inner {
+      height: $--pagination-button-height;
+    }
+
+    .#{$namespace}-input__inner::-webkit-inner-spin-button,
+    .#{$namespace}-input__inner::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  @include when(background) {
+    .btn-prev,
+    .btn-next,
+    .#{$namespace}-pager li {
+      margin: 0 5px;
+      background-color: $--color-info-lighter;
+      color: $--color-text-regular;
+      min-width: 30px;
+      border-radius: 2px;
+
+      &.disabled {
+        color: $--color-text-placeholder;
+      }
+    }
+
+    .btn-prev, .btn-next {
+      padding: 0;
+
+      &:disabled {
+        color: $--color-text-placeholder;
+      }
+    }
+
+    .#{$namespace}-pager li:not(.disabled) {
+      &:hover {
+        color: $--pagination-hover-color;
+      }
+
+      &.active {
+        background-color: $--color-primary;
+        color: $--color-white;
+      }
+    }
+
+    &.#{$namespace}-pagination--small {
+      .btn-prev,
+      .btn-next,
+      .#{$namespace}-pager li {
+        margin: 0 3px;
+        min-width: 22px;
+      }
+    }
+  }
+}
+
+@include b(pager) {
+  user-select: none;
+  list-style: none;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+
+  .more::before {
+    line-height: 30px;
+  }
+
+  li {
+    padding: 0 4px;
+    background: $--pagination-background-color;
+    vertical-align: top;
+    display: inline-block;
+    font-size: $--pagination-font-size;
+    min-width: $--pagination-button-width;
+    height: $--pagination-button-height;
+    line-height: $--pagination-button-height;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0;
+
+    &.btn-quicknext,
+    &.btn-quickprev {
+      line-height: 28px;
+      color: $--pagination-button-color;
+
+      &.disabled {
+        color: $--color-text-placeholder;
+      }
+    }
+
+    &.btn-quickprev:hover {
+      cursor: pointer;
+    }
+
+    &.btn-quicknext:hover {
+      cursor: pointer;
+    }
+
+    &.active + li {
+      border-left: 0;
+    }
+
+    &:hover {
+      color: $--pagination-hover-color;
+    }
+
+    &.active {
+      color: $--pagination-hover-color;
+      cursor: default;
+    }
+  }
+}
