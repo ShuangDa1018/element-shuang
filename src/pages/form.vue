@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Ts-form :formMeta="formMeta" :defaultData="defaultData"></Ts-form>
+    <S-form :formMeta="formMeta" :defaultData="defaultData"></S-form>
   </div>
 </template>
 
 <script>
-import TsForm from "../components/TsForm.vue";
+import SForm from "../components/SForm.vue";
 import { reactive } from "vue";
 export default {
   name: "form",
   components: {
-    TsForm,
+    SForm,
   },
   setup() {
     const defaultData = reactive({

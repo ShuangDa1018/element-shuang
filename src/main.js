@@ -4,9 +4,10 @@ import router from './router'
 import store from './store'
 import installElementPlus from './plugins/element'
 import './assets/css/icon.css'
-import { countTo } from 'vue3-count-to'
+import { CountTo } from 'vue3-count-to'
 const app = createApp(App)
 installElementPlus(app)
+app.component('CountTo', CountTo)
 app
     .use(store)
     .use(router)

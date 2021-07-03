@@ -1,14 +1,19 @@
 <template>
   <div class="container">
-    <template v-if="searchFiled.length">
-      <el-row>
+    <template v-if="searchList.length">
+      <el-row >
         <div
-          v-for="(item, i) in searchFiled"
+          v-for="(item, i) in searchList"
           :key="i"
           :span="8"
           class="display-flex el-co"
         >
-          <div class="head-label">{{ item.label }}:</div>
+          <div
+            class="head-label"
+            :style="{ 'min-width': tableMeta.searchMinWidth || '70px' }"
+          >
+            {{ item.label }}:
+          </div>
           <div :key="i" class="display-flex">
             <el-select
               v-if="Array.isArray(item.options)"
@@ -20,12 +25,12 @@
               <el-option
                 v-for="it in item.options"
                 :key="it.key"
-                :label="it.label"
-                :value="it.value"
+                :label="it[item.optionLabel || 'label']"
+                :value="it[item.optionValue || 'value']"
               ></el-option>
             </el-select>
             <el-date-picker
-              v-else-if="item.type === 'DATE_PICKER'"
+              v-else-if="item.type === 'TIME'"
               :key="item.key"
               v-model="searchValue[item.key]"
               value-format="timestamp"
@@ -46,18 +51,23 @@
         </div>
         <el-button
           type="primary"
-          class="head-button"
-          icon="el-icon-search"
+          class="search-button"
           @click="handleSearch"
           >搜索</el-button
         >
       </el-row>
     </template>
+    <div class="flex-end">
+      <slot name="head-button"></slot>
+      <el-button @click="handleAdd" type="primary">新增</el-button>
+      <el-popconfirm title="确定删除吗" @confirm="handleDelete"> <template #reference><el-button>全部删除</el-button> </template></el-popconfirm>
+    </div>
     <el-table
       :data="tableData"
       border
       class="table"
       ref="multipleTable"
+      style="width: 100%"
       header-cell-class-name="table-header"
     >
       <el-table-column
@@ -71,12 +81,13 @@
         align="center"
         width="55"
       />
-      <template v-for="(item, index) in tableHeader" :key="index">
+      <template v-for="(item, index) in columnList" :key="index">
         <slot name="el-table-column" :item="item"></slot>
         <el-table-column
-          v-if="item.type === 'DATE_PICKER'"
+          v-if="item.type === 'TIME'"
           :prop="item.key"
           :label="item.label"
+          :width="item.width"
           :align="item.align || 'center'"
         >
           <template #default="{ row }">{{
@@ -84,10 +95,10 @@
           }}</template>
         </el-table-column>
         <el-table-column
-          v-else-if="item.type === 'IMAGE'"
-          :prop="item.key"
+          v-else-if="item.type == 'IMAGE'"
           :label="item.label"
           :align="item.align || 'center'"
+          :width="item.width"
         >
           <template #default="{ row }">
             <el-image
@@ -100,8 +111,8 @@
         </el-table-column>
         <el-table-column
           v-else-if="Array.isArray(item.options)"
-          :prop="item.key"
           :label="item.label"
+          :width="item.width"
           :align="item.align || 'center'"
         >
           <template #default="{ row }">
@@ -115,21 +126,36 @@
           </template>
         </el-table-column>
         <el-table-column
-          v-if="item.type === 'count-to'"
-          :prop="item.key"
+          v-else-if="item.type === 'COUNTTO'"
           :label="item.label"
+          :width="item.width"
           :align="item.align || 'center'"
         >
           <template #default="{ row }">
-            <Count-to :startVal="item.startVal" :endVal="row[item.key]" :duraction="item.duraction"/>
+            <CountTo
+              :startVal="item.startVal"
+              :endVal="row[item.key]"
+              :duration="item.duration"
+            />
           </template>
         </el-table-column>
         <el-table-column
           v-else
           :prop="item.key"
           :label="item.label"
+          :width="item.width"
           :align="item.align || 'center'"
-        ></el-table-column>
+        >
+          <template #default="{ row }">
+            <el-popover v-if="row[item.key].length>item.maxLength" trigger="hover" :width="300" placement="right">
+              <template #reference>
+                <div v-html="getHTML(row[item.key], item.maxLength)"></div>
+              </template>
+              <div v-html="row[item.key]"></div>
+            </el-popover>
+                <div v-else v-html="getHTML(row[item.key], item.maxLength)"></div>
+          </template>
+        </el-table-column>
       </template>
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
@@ -140,13 +166,12 @@
             @click="handleEdit(scope.$index, scope.row)"
             >编辑
           </el-button>
-          <el-button
+          <el-popconfirm title="确定删除吗" @confirm="handleDelete(scope.$index, scope.row)"> <template #reference><el-button
             type="text"
             icon="el-icon-delete"
             class="red"
-            @click="handleDelete(scope.$index, scope.row)"
             >删除</el-button
-          >
+          ></template></el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -183,7 +208,7 @@ export default {
       type: Object,
     },
   },
-  emits: ["editBtn", "deleteBtn", "saveBtn", "beforeSearch"],
+  emits: ["editBtn", "deleteBtn",'addBtn', "saveBtn", "beforeSearch"],
   setup(props, ctx) {
     const getOptionValue = computed(() => {
       return (options, value, key) => {
@@ -193,22 +218,26 @@ export default {
     });
     const getTime = (value, format = "YYYY-MM-DD HH:mm:ss") =>
       value ? moment(value).format(format) : "";
-    const tableHeader = computed(() =>
-      props.tableMeta.metaList.filter((it) => !it.displayList)
-    );
-    const searchFiled = computed(() =>
-      props.tableMeta.metaList.filter((it) => it.searchable)
-    );
-    const searchValue = reactive({
-      pageIndex: 1,
-      pageSize: 10,
+    const metaList = props.tableMeta.metaList;
+    const columnList =computed(()=> metaList.filter(it=> !it.hiddenColumn) )
+    const searchList = computed(() => metaList.filter((it) => {
+      if(it.searchUrl&&it.showSearch) fetchData(it.searchUrl,it.searchParams).then(res=>it.options = res.list)
+      return it.showSearch
+    }));
+    const searchValue = reactive({ pageIndex: 1, pageSize: 10 });
+    const getHTML = computed(() => {
+      return (value, maxLength = 100) =>{
+        if(value) { 
+          return value.length <= maxLength ? value :  value.toString().slice(0, maxLength) + "...";
+          }
+      }
     });
     const tableData = ref([]);
     const pageTotal = ref(0);
     // 获取表格数据
     const getSearch = () => {
       ctx.emit("beforeSearch", searchValue);
-      fetchData(searchValue, props.dataUrl).then((res) => {
+      fetchData( props.dataUrl,searchValue).then((res) => {
         tableData.value = res.list;
         pageTotal.value = res.pageTotal || 50;
       });
@@ -228,15 +257,9 @@ export default {
     // 删除操作
     const handleDelete = (index) => {
       // 二次确认删除
-      ElMessageBox.confirm("确定要删除吗？", "提示", {
-        type: "warning",
-      })
-        .then(() => {
           ElMessage.success("删除成功");
           ctx.emit("deleteBtn", index);
           tableData.value.splice(index, 1);
-        })
-        .catch(() => {});
     };
 
     // 表格编辑时弹窗和保存
@@ -246,8 +269,11 @@ export default {
       address: "",
     });
     let idx = -1;
+    const handleAdd = ()=>{
+      ctx.emit('addBtn')
+    }
     const handleEdit = (index, row) => {
-      ctx.emit("editBtn");
+      ctx.emit("editBtn",{...row});
       idx = index;
       Object.keys(form).forEach((item) => {
         form[item] = row[item];
@@ -271,12 +297,14 @@ export default {
       handlePageChange,
       handleDelete,
       handleEdit,
+      handleAdd,
       saveEdit,
-      tableHeader,
       getOptionValue,
       getTime,
-      searchFiled,
+      searchList,
       searchValue,
+      getHTML,
+      columnList
     };
   },
 };
@@ -311,9 +339,15 @@ export default {
 }
 .head-label {
   margin-right: 10px;
-  min-width: 2.2rem;
+  text-align: right;
 }
-.head-button {
-  height: 40px;
+.search-button {
+  margin-bottom:15px ;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+  width: 100%;
 }
 </style>
