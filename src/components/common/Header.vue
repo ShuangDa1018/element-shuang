@@ -5,7 +5,7 @@
       <i v-if="!collapse" class="el-icon-s-fold"></i>
       <i v-else class="el-icon-s-unfold"></i>
     </div>
-    <div class="logo">还没搞好呢，别急</div>
+    <div class="logo">element-shuang后台管理模板</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏 -->

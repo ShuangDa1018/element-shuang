@@ -335,7 +335,7 @@ export default {
   margin-bottom: 15px;
   white-space: nowrap;
   width: auto;
-  margin-right: 25px;
+  margin-right: 10px;
 }
 .head-label {
   margin-right: 10px;

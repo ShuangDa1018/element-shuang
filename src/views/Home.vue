@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div  class="about">
         <v-header />
         <v-sidebar />
         <div class="content-box" :class="{ 'content-collapse': collapse }">

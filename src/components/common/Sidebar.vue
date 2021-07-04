@@ -99,8 +99,8 @@ export default {
                 title: "错误处理",
                 subs: [
                     {
-                        index: "/permission",
-                        title: "权限测试",
+                        index: "/401",
+                        title: "401页面",
                     },
                     {
                         index: "/404",
