@@ -29,7 +29,7 @@
         </div>
         <!-- 用户头像 -->
         <div class="user-avator">
-          <img src="../assets/img/img.jpg" />
+          <img src="../../assets/img/img.jpg" />
         </div>
         <!-- 用户名下拉菜单 -->
         <el-dropdown class="user-name" trigger="click" @command="handleCommand">
@@ -40,7 +40,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <a
-                href="https://github.com/lin-xin/vue-manage-system"
+                href="https://github.com/ShuangDa1018/element-shuang"
                 target="_blank"
               >
                 <el-dropdown-item>项目仓库</el-dropdown-item>

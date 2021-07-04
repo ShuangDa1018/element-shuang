@@ -40,8 +40,13 @@ export default {
         const items = [
             {
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/index",
                 title: "系统首页",
+            },
+            {
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "基础首页",
             },
             {
                 icon: "el-icon-lx-cascades",

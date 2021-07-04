@@ -9,13 +9,21 @@ const routes = [{
     name: "Home",
     component: Home,
     children: [{
-            path: "/dashboard",
-            name: "dashboard",
+            path: "/index",
+            name: "index",
             meta: {
                 title: '系统首页'
             },
             component: () =>
-                import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+                import ( /* webpackChunkName: "dashboard" */ "../views/index/Index.vue")
+        }, {
+            path: "/dashboard",
+            name: "dashboard",
+            meta: {
+                title: '基础首页'
+            },
+            component: () =>
+                import ( /* webpackChunkName: "dashboard" */ "../views/index/Dashboard.vue")
         },
         {
             path: "/table",

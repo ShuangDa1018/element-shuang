@@ -1,7 +1,12 @@
 export default {
     state: {
         tagsList: [],
-        collapse: false
+        collapse: false,
+        user: {
+            name: '双哥哥',
+            avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+            roles: '双哥哥',
+        }
     },
     mutations: {
         delTagsItem(state, data) {

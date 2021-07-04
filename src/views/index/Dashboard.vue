@@ -4,7 +4,7 @@
       <el-col :span="8">
         <el-card shadow="hover" class="mgb20" style="height: 252px">
           <div class="user-info">
-            <img src="../assets/img/img.jpg" class="user-avator" alt />
+            <img src="../../assets/img/img.jpg" class="user-avator" alt />
             <div class="user-info-cont">
               <div class="user-info-name">{{ name }}</div>
               <div>{{ role }}</div>
@@ -12,7 +12,7 @@
           </div>
           <div class="user-info-list">
             上次登录时间：
-            <span>2019-11-01</span>
+            <span>2021-5-01</span>
           </div>
           <div class="user-info-list">
             上次登录地点：
@@ -40,7 +40,7 @@
               <div class="grid-content grid-con-1">
                 <i class="el-icon-user-solid grid-con-icon"></i>
                 <div class="grid-cont-right">
-                                                <CountTo :start-val="0" :end-val="1200" :duration="3000" class="grid-num"    />
+                                                <CountTo :start-val="0" :end-val="5200"  class="grid-num"    />
 
                   <div>用户访问量</div>
                 </div>
@@ -52,7 +52,7 @@
               <div class="grid-content grid-con-2">
                 <i class="el-icon-message-solid grid-con-icon"></i>
                 <div class="grid-cont-right">
-                                   <CountTo :start-val="0" :end-val="3653" :duration="3000" class="grid-num"    />
+                                   <CountTo :start-val="0" :end-val="3653" :duration="13000" class="grid-num"    />
                   <div>系统消息</div>
                 </div>
               </div>
@@ -63,7 +63,7 @@
               <div class="grid-content grid-con-3">
                 <i class="el-icon-s-goods grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <CountTo :start-val="0" :end-val="5000" :duration="3000" class="grid-num"    />
+                  <CountTo :start-val="0" :end-val="5000" :duration="30000" class="grid-num"    />
                   <div>数量</div>
                 </div>
               </div>
