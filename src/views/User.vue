@@ -65,7 +65,7 @@
 import { reactive, ref } from "vue";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
-import avatar from "../assets/img/img.jpg";
+import avatar from "../../assets/img/img.jpg";
 export default {
     name: "user",
     components: {
