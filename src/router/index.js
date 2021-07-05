@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 
 const routes = [{
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/index'
 }, {
     path: "/",
     name: "Home",

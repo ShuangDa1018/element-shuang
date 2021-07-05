@@ -22,13 +22,19 @@ export default {
         {
           // 类型默认 input
           label: "基本信息",
-          key: "1",
+          key: "common",
+          required: true, // 校验必填
         },
         {
           type: "input",
           label: "输入框", // label名
           key: "inputkey", //v-model绑定的字段
           required: true, // 校验必填
+          validator: (rule, value, back) => {
+            if (10<value<20) {
+              back()
+            }
+          }
         },
         {
           type: "select",
@@ -36,7 +42,6 @@ export default {
           key: "label",
           value: "label",
           selectUrl: "commodity/commodityUnit", // 请求地址
-          disabled: true, // 能否编辑
         },
         {
           type: "select",
@@ -56,11 +61,17 @@ export default {
           type: "input-number",
           key: "numberKey",
           label: "计数器",
+          validator: (rule, value, back) => {
+            if (10<value<20) {
+              back()
+            }
+          }
         },
         {
           type: "switch",
           key: "switchKey",
           label: "开关",
+          disabled: true, // 能否编辑
         },
         {
           type: "checkbox-group",
@@ -72,6 +83,13 @@ export default {
           type: "upload",
           key: "uploadKey",
           label: "上传",
+          required:true
+        },
+         {
+          type: "textarea",
+          key: "textarea",
+          label: "富文本",
+          required:true
         },
       ],
     });
