@@ -40,43 +40,43 @@ export default {
         const items = [
             {
                 icon: "el-icon-lx-home",
-                index: "/index",
+                path: "/index",
                 title: "系统首页",
             },
             {
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                path: "/dashboard",
                 title: "基础首页",
             },
             {
                 icon: "el-icon-lx-cascades",
-                index: "/table",
+                path: "/table",
                 title: "基础表格",
             },
             {
                 icon: "el-icon-lx-copy",
-                index: "/tabs",
+                path: "/tabs",
                 title: "tab选项卡",
             },
             {
                 icon: "el-icon-lx-calendar",
-                index: "3",
+                path: "3",
                 title: "表单相关",
                 subs: [
                     {
-                        index: "/form",
+                        path: "/form",
                         title: "基本表单",
                     },
                     {
-                        index: "/upload",
+                        path: "/upload",
                         title: "文件上传",
                     },
                     {
-                        index: "4",
+                        path: "4",
                         title: "三级菜单",
                         subs: [
                             {
-                                index: "/editor",
+                                path: "/editor",
                                 title: "富文本编辑器",
                             },
                         ],
@@ -85,37 +85,37 @@ export default {
             },
             {
                 icon: "el-icon-lx-emoji",
-                index: "/icon",
+                path: "/icon",
                 title: "自定义图标",
             },
             {
                 icon: "el-icon-pie-chart",
-                index: "/charts",
+                path: "/charts",
                 title: "schart图表",
             },
             {
                 icon: "el-icon-lx-global",
-                index: "/i18n",
+                path: "/i18n",
                 title: "国际化功能",
             },
             {
                 icon: "el-icon-lx-warn",
-                index: "7",
+                path: "7",
                 title: "错误处理",
                 subs: [
                     {
-                        index: "/401",
+                        path: "/401",
                         title: "401页面",
                     },
                     {
-                        index: "/404",
+                        path: "/404",
                         title: "404页面",
                     },
                 ],
             },
             {
                 icon: "el-icon-lx-redpacket_fill",
-                index: "/donate",
+                path: "/donate",
                 title: "支持作者",
             },
         ];
