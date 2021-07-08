@@ -126,11 +126,10 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .header {
   position: relative;
   box-sizing: border-box;
-  width: 100%;
   height: 70px;
   font-size: 22px;
   color: #fff;
@@ -144,6 +143,7 @@ export default {
 .header .logo {
   float: left;
   width: 250px;
+  height: 70px;
   line-height: 70px;
 }
 .header-right {

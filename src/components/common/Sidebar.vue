@@ -138,12 +138,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+@import "../../assets/scss/variables.scss";
 .sidebar {
     display: block;
     position: absolute;
     left: 0;
-    top: 70px;
+    height:100vh;
+    width: $base-sidebar-wdith;
     bottom: 0;
     overflow-y: scroll;
 }
@@ -151,7 +153,7 @@ export default {
     width: 0;
 }
 .sidebar-el-menu:not(.el-menu--collapse) {
-    width: 250px;
+    width: $base-sidebar-wdith;
 }
 .sidebar > ul {
     height: 100%;
