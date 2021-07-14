@@ -51,7 +51,6 @@ export default {
       isModile,
     };
   },
-  setup() {},
   beforeMount() {
     window.addEventListener("resize", this.handleResize);
   },
@@ -63,15 +62,14 @@ export default {
 <style lang='scss' scoped>
 @import "../assets/scss/variables.scss";
 .content-box {
-  position: relative;
-  box-sizing: border-box;
+  transition: .35s;
 }
 .yes-collapse{
- width: calc(100vh-$base-sidebar-min-wdith) ;
- margin-left: $base-sidebar-min-wdith;
+ width: calc(100vh-$base-sidebar-min-width) ;
+ margin-left: $base-sidebar-min-width;
 }
 .no-collapse{
- width: calc(100vh-$base-sidebar-wdith) ;
- margin-left: $base-sidebar-wdith;
+ width: calc(100vh-$base-sidebar-width) ;
+ margin-left: $base-sidebar-width;
 }
 </style>
