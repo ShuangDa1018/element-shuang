@@ -1,10 +1,3 @@
-<!--
- * @Description:  github 图标
- * @Author: ZY
- * @Date: 2021-01-18 11:43:14
- * @LastEditors: ZY
- * @LastEditTime: 2021-01-18 11:51:11
--->
 <template>
   <a
     href="https://github.com/ShuangDa1018/element-shuang"

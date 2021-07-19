@@ -1,6 +1,6 @@
 <template>
-  <div class="sidebar" >
-    <div class="log-title" :class="{'no-title':collapse}">
+  <div class="sidebar">
+    <div class="log-title" :class="{ 'no-title': collapse }">
       <img
         class="log"
         src="https://i.gtimg.cn/club/item/face/img/2/15922_100.gif"
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { computed,  } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 export default {
@@ -174,6 +174,7 @@ export default {
   height: 100vh;
   width: $base-sidebar-width;
   bottom: 0;
+  background: rgb(50, 65, 87);
   overflow-y: scroll;
 }
 .log-title {
@@ -181,7 +182,6 @@ export default {
   line-height: 56px;
   display: flex;
   color: rgb(191, 203, 217);
-  background: rgb(50, 65, 87);
   justify-content: center;
   align-items: center;
   width: $base-sidebar-width;
@@ -200,11 +200,8 @@ export default {
 .sidebar-el-menu:not(.el-menu--collapse) {
   width: $base-sidebar-width;
 }
-.sidebar > ul {
-  height: 100%;
-}
 .no-title{
-    transition: .5s;
+    transition:$base-transition;
     width: $base-sidebar-min-width;
 }
 </style>

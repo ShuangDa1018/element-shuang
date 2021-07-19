@@ -1,11 +1,3 @@
-<!--
- * @Description: 首页柱形图小组件
- * @Author: ZY
- * @Date: 2021-01-15 18:48:40
- * @LastEditors: ZY
- * @LastEditTime: 2021-01-26 09:57:33
--->
-
 <template>
   <div
     id="homebarcharts"

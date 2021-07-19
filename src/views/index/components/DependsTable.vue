@@ -1,11 +1,3 @@
-<!--
- * @Description: 依赖包表格
- * @Author: ZY
- * @Date: 2021-01-18 11:09:25
- * @LastEditors: SCY
- * @LastEditTime: 2021-04-02 09:37:05
--->
-
 <template>
   <el-card
     class="card"

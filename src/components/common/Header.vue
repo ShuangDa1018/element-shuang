@@ -5,7 +5,6 @@
       <i v-if="!collapse" class="el-icon-s-fold"></i>
       <i v-else class="el-icon-s-unfold"></i>
     </div>
-    <div class="logo">element-shuang后台管理模板</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏 -->
@@ -138,12 +137,6 @@ export default {
   float: left;
   padding: 0 21px;
   cursor: pointer;
-  line-height: 70px;
-}
-.header .logo {
-  float: left;
-  width: 250px;
-  height: 70px;
   line-height: 70px;
 }
 .header-right {

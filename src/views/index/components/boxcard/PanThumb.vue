@@ -1,11 +1,3 @@
-<!--
- * @Description:
- * @Author: ZY
- * @Date: 2021-01-18 09:10:23
- * @LastEditors: ZY
- * @LastEditTime: 2021-01-18 09:34:39
--->
-
 <template>
   <div
     :style="{zIndex: zIndex, height: height, width: width}"

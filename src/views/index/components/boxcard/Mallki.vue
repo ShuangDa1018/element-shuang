@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: ZY
- * @Date: 2021-01-18 09:20:30
- * @LastEditors: WJM
- * @LastEditTime: 2021-01-22 14:57:45
--->
 <template>
   <a
     :class="className"

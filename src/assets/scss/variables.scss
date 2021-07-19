@@ -1,3 +1,9 @@
 $base-sidebar-width:256px;
 $base-sidebar-min-width:64px;
-$base-sidebar-height:70px
+$base-sidebar-height:70px;
+$base-z-index:10;
+$base-transition:all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+border 0s,
+background 0s,
+color 0s,
+font-size 0s;

@@ -1,10 +1,4 @@
-<!--
- * @Description: 首页雷达图
- * @Author: ZY
- * @Date: 2021-01-18 11:23:22
- * @LastEditors: SCY
- * @LastEditTime: 2021-04-06 14:50:31
--->
+
 <template>
   <div
     id="homeRadarCharts"
