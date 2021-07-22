@@ -1,8 +1,7 @@
 <template>
   <div class="tags" v-if="showTags">
-    <!-- <el-scrollbar> -->
-      <!-- <ul> -->
-        <li
+    <el-scrollbar>
+        <div
           class="tags-li"
           v-for="(item, index) in tagsList"
           :class="{ active: isActive(item.path) }"
@@ -14,9 +13,8 @@
           <span class="tags-li-icon" @click="closeTags(index)">
             <i class="el-icon-close"></i>
           </span>
-        </li>
-      <!-- </ul> -->
-    <!-- </el-scrollbar> -->
+        </div>
+    </el-scrollbar>
     <div class="tags-close-box">
       <el-dropdown @command="handleTags">
         <el-button size="mini" type="primary">
@@ -127,19 +125,10 @@ export default {
   background: #fff;
   padding-right: 120px;
   box-shadow: 0 5px 10px #ddd;
+  white-space:nowrap 
 }
-
-.tags ul {
-  box-sizing: border-box;
- width: calc(100%-90px);
-  /* height: 30px;
-  line-height: 30px;
-  overflow: scroll;
-  white-space:nowrap  */
-}
-
 .tags-li {
-  float: left;
+  display: inline-block;
   margin: 3px 5px 2px 3px;
   border-radius: 3px;
   font-size: 12px;

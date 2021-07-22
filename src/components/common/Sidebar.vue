@@ -142,11 +142,12 @@ export default {
       {
         icon: "el-icon-lx-redpacket_fill",
         path: "/donate",
-        title: "支持作者",
+        title: "支持双哥",
       },
     ];
     const route = useRoute();
-    // items = useRouter().getRoutes()
+    const list = useRouter().getRoutes()
+    console.log(list);
     const onRoutes = computed(() => {
       return route.path;
     });
@@ -158,6 +159,7 @@ export default {
 
     return {
       items,
+      list,
       onRoutes,
       collapse,
     };

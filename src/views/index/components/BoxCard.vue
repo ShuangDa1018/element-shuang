@@ -1,11 +1,3 @@
-<!--
- * @Description: 卡片盒子，首页显示技术百分比
- * @Author: ZY
- * @Date: 2021-01-16 17:12:32
- * @LastEditors: ZY
- * @LastEditTime: 2021-01-18 09:36:19
--->
-
 <template>
   <el-card
     class="box-card-component"

@@ -3,15 +3,13 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-redpacket_fill"></i> 支持作者
+                    <i class="el-icon-lx-redpacket_fill"></i> 支持双哥哥
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="plugins-tips">如果该框架对你有帮助，那就请作者喝杯饮料吧！加微信号linxin_20探讨问题。</div>
-            <div>
-                <img src="https://www.baidu.com/link?url=3a-H1k9RO_ce5KJAPhUI1joOIJhTysJBStc-W_AhiwcrF0ukD77-mDV4-s9_GxX41RbBwQZPYla_q8W0-4MPDK&wd=&eqid=aa68d55d001670b50000000660d8a27d" />
-            </div>
+            <div class="plugins-tips">如果该框架对你有帮助，那就请作者喝杯饮料吧！QQ群：814333454 探讨问题。</div>
+            
         </div>
     </div>
 </template>
