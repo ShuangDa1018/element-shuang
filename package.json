@@ -9,9 +9,11 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
+        "driver.js": "^0.9.8",
         "echarts": "^5.1.2",
         "element-plus": "1.0.2-beta.52",
         "moment": "^2.29.1",
+        "nprogress": "^0.2.0",
         "vue": "^3.1.2",
         "vue-cropperjs": "^5.0.0",
         "vue-i18n": "^9.0.0",
