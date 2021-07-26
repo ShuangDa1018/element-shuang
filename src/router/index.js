@@ -165,7 +165,6 @@ router.beforeEach((to, from, next) => {
     }
 });
 router.afterEach((to, from, next) => {
-    console.log(NProgress)
     NProgress.done()
 })
 export default router;
