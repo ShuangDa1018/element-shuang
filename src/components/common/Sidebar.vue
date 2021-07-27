@@ -6,7 +6,7 @@
         src="https://i.gtimg.cn/club/item/face/img/2/15922_100.gif"
         alt=""
       />
-      <span class="title" v-if="!collapse">element-shuang后台管理</span>
+      <TextHover class="title" v-if="!collapse" text="element-shuang后台管理"   />
     </div>
     <el-menu
       class="sidebar-el-menu"
@@ -61,7 +61,11 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
+import TextHover from '../text-hover/index.vue'
 export default {
+  components:{
+    TextHover
+  },
   setup() {
     const items = [
       {

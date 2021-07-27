@@ -7,6 +7,10 @@
     </div>
     <div class="header-right">
       <div class="header-user-con">
+        <!-- 导航 -->
+        <el-tooltip content="引导">
+          <i  id="guide" class="el-icon-share" @click.prevent.stop="guide"></i>
+        </el-tooltip>
         <!-- 全屏 -->
         <div class="btn-fullscreen" @click="handleFullScreen">
           <el-tooltip effect="dark" :content="fullscreen ? '取下全屏' : '全屏'">
@@ -59,6 +63,9 @@
 import { computed, onMounted,ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import Driver from 'driver.js'
+import 'driver.js/dist/driver.min.css'
+import steps from './steps'
 export default {
     setup() {
         const username = localStorage.getItem("ms_username");
@@ -66,12 +73,14 @@ export default {
         const fullscreen = ref(false)
         const store = useStore();
         const collapse = computed(() => store.state.collapse);
+        let driver
         // 侧边栏折叠
         const collapseChage = () => {
             store.commit("handleCollapse", !collapse.value);
         };
 
         onMounted(() => {
+            driver = new Driver()
             if (document.body.clientWidth < 1500) {
                 collapseChage();
             }
@@ -112,7 +121,12 @@ export default {
                 router.push("/user");
             }
         };
-
+        const guide = () =>{
+          if(driver){
+            driver.defineSteps(steps)
+            driver.start()
+          }
+        }
         return {
             username,
             message,
@@ -120,7 +134,8 @@ export default {
             collapse,
             collapseChage,
             handleCommand,
-            handleFullScreen
+            handleFullScreen,
+            guide
         };
     },
 };
