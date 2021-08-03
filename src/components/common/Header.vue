@@ -9,7 +9,7 @@
       <div class="header-user-con">
         <!-- 导航 -->
         <el-tooltip content="引导">
-          <i  id="guide" class="el-icon-share" @click.prevent.stop="guide"></i>
+          <i id="guide" class="el-icon-share" @click.prevent.stop="guide"></i>
         </el-tooltip>
         <!-- 全屏 -->
         <div class="btn-fullscreen" @click="handleFullScreen">
@@ -60,84 +60,90 @@
   </div>
 </template>
 <script>
-import { computed, onMounted,ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import Driver from 'driver.js'
-import 'driver.js/dist/driver.min.css'
-import steps from './steps'
+import Driver from "driver.js";
+import "driver.js/dist/driver.min.css";
+import steps from "./steps";
 export default {
-    setup() {
-        const username = localStorage.getItem("ms_username");
-        const message = 2;
-        const fullscreen = ref(false)
-        const store = useStore();
-        const collapse = computed(() => store.state.collapse);
-        let driver
-        // 侧边栏折叠
-        const collapseChage = () => {
-            store.commit("handleCollapse", !collapse.value);
-        };
+  setup() {
+    const username = localStorage.getItem("ms_username");
+    const message = 2;
+    const fullscreen = ref(false);
+    const store = useStore();
+    const collapse = computed(() => store.state.collapse);
+    let driver;
+    // 侧边栏折叠
+    const collapseChage = () => {
+      store.commit("handleCollapse", !collapse.value);
+    };
 
-        onMounted(() => {
-            driver = new Driver()
-            if (document.body.clientWidth < 1500) {
-                collapseChage();
-            }
-        });
-        const handleFullScreen = ()=>{
-            let element = document.documentElement;
-            if (fullscreen.value) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            } else {
-                if (element.requestFullscreen) {
-                    element.requestFullscreen();
-                } else if (element.webkitRequestFullScreen) {
-                    element.webkitRequestFullScreen();
-                } else if (element.mozRequestFullScreen) {
-                    element.mozRequestFullScreen();
-                } else if (element.msRequestFullscreen) {
-                    // IE11
-                    element.msRequestFullscreen();
-                }
-            }
-             fullscreen.value = !fullscreen.value;
+    onMounted(() => {
+      if (document.body.clientWidth < 1500) {
+        collapseChage();
+      }
+      driver = new Driver({
+        doneBtnText: "完成",
+        closeBtnText: "关闭",
+        stageBackground: "#fff",
+        nextBtnText: "下一步",
+        prevBtnText: "上一步",
+      });
+    });
+    const handleFullScreen = () => {
+      let element = document.documentElement;
+      if (fullscreen.value) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
         }
-        // 用户名下拉菜单选择事件
-        const router = useRouter();
-        const handleCommand = (command) => {
-            if (command == "loginout") {
-                localStorage.removeItem("ms_username");
-                router.push("/login");
-            } else if (command == "user") {
-                router.push("/user");
-            }
-        };
-        const guide = () =>{
-          if(driver){
-            driver.defineSteps(steps)
-            driver.start()
-          }
+      } else {
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.webkitRequestFullScreen) {
+          element.webkitRequestFullScreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+          // IE11
+          element.msRequestFullscreen();
         }
-        return {
-            username,
-            message,
-            fullscreen,
-            collapse,
-            collapseChage,
-            handleCommand,
-            handleFullScreen,
-            guide
-        };
-    },
+      }
+      fullscreen.value = !fullscreen.value;
+    };
+    // 用户名下拉菜单选择事件
+    const router = useRouter();
+    const handleCommand = (command) => {
+      if (command == "loginout") {
+        localStorage.removeItem("ms_username");
+        router.push("/login");
+      } else if (command == "user") {
+        router.push("/user");
+      }
+    };
+    const guide = () => {
+      if (driver) {
+        driver.defineSteps(steps);
+        driver.start();
+      }
+    };
+    return {
+      username,
+      message,
+      fullscreen,
+      collapse,
+      collapseChage,
+      handleCommand,
+      handleFullScreen,
+      guide,
+    };
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -210,11 +216,11 @@ export default {
   text-align: center;
 }
 .btn-fullscreen {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    border-radius: 15px;
-    cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
 }
 </style>
