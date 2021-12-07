@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import STable from "../components/STable.vue";
+import STable from "@/components/STable.vue";
 import { ref, reactive } from "vue";
 import { fetchData } from "../api/index";
 export default {

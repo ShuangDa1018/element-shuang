@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SForm from "../components/SForm.vue";
+import SForm from "@/components/SForm.vue";
 import { reactive } from "vue";
 export default {
   name: "form",
@@ -31,10 +31,10 @@ export default {
           key: "inputkey", //v-model绑定的字段
           required: true, // 校验必填
           validator: (rule, value, back) => {
-            if (10<value<20) {
-              back()
+            if (10 < value < 20) {
+              back();
             }
-          }
+          },
         },
         {
           type: "select",
@@ -62,10 +62,10 @@ export default {
           key: "numberKey",
           label: "计数器",
           validator: (rule, value, back) => {
-            if (10<value<20) {
-              back()
+            if (10 < value < 20) {
+              back();
             }
-          }
+          },
         },
         {
           type: "switch",
@@ -83,13 +83,13 @@ export default {
           type: "upload",
           key: "uploadKey",
           label: "上传",
-          required:true
+          required: true,
         },
-         {
+        {
           type: "textarea",
           key: "textarea",
           label: "富文本",
-          required:true
+          required: true,
         },
       ],
     });
