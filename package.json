@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview --host"
+    "serve": "vite preview --host",
+    "deploy": "start deploy.sh"
   },
   "dependencies": {
     "axios": "^0.21.1",

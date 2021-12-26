@@ -3,10 +3,10 @@ import Home from "../views/Home.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 const routes = [
-  {
-    path: "/",
-    redirect: "/index",
-  },
+  // {
+  //   path: "/",
+  //   redirect: "/index",
+  // },
   {
     path: "/",
     name: "Home",
