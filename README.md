@@ -12,4 +12,4 @@
 npm run dev
 ```
 ### 演示地址
-https://shuangda1018.github.io/element-shuang/#/dashboard
+https://shuangda1018.github.io/element-shuang/#/table
